@@ -25,7 +25,8 @@ var dnsCfg = {
     email: process.env.CLOUDFLARE_EMAIL,
     domain: cfDomain
   },
-  records: {}
+  records: {},
+  pushover: {}
 };
 dnsCfg.records[process.env.HUBOT_DNS_NAME] = 'A';
 
