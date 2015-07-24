@@ -1,0 +1,30 @@
+{
+  "name": "hubot-cloudflare-ddns",
+  "version": "1.0.0",
+  "description": "Hubot will update its DNS name when it changes (or shortly thereafter)",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover _mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gcochard/hubot-cloudflare-ddns.git"
+  },
+  "keywords": [
+    "cloudflare",
+    "ddns",
+    "hubot"
+  ],
+  "author": "Greg Cochard <greg.cochard@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gcochard/hubot-cloudflare-ddns/issues"
+  },
+  "homepage": "https://github.com/gcochard/hubot-cloudflare-ddns#readme",
+  "dependencies": {
+    "cloudflare-ddns": "^1.0.0",
+    "got": "^3.3.1",
+    "native-dns": "^0.7.0",
+    "tldjs": "^1.5.3"
+  }
+}
