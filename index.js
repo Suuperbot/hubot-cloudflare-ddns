@@ -60,7 +60,7 @@ function lookupDns(){
   var req = dns.Request({
     question: question,
     server: { address: '8.8.8.8', port: 53, type: 'udp' },
-    timeout: 1000
+    timeout: 10000
   });
   req.on('timeout', function(){
     console.log('timeout, waiting 10 seconds to try again');
@@ -91,7 +91,7 @@ function getNs(){
   var req = dns.Request({
     question: question,
     server: { address: '8.8.8.8', port: 53, type: 'udp' },
-    timeout: 1000
+    timeout: 10000
   });
   req.on('timeout', function(){
     console.log('timeout, waiting 10 seconds to try again');

@@ -1,6 +1,6 @@
 {
   "name": "hubot-cloudflare-ddns",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Hubot will update its DNS name when it changes (or shortly thereafter)",
   "main": "index.js",
   "scripts": {
