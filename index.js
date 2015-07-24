@@ -64,7 +64,7 @@ function lookupDns(){
   });
   req.on('timeout', function(){
     console.log('timeout, waiting 10 seconds to try again');
-    setTimeout(req.send, 10000);
+    setTimeout(req.send.bind(req), 10000);
   });
   req.on('message', function(err, answer){
     answer.answer.forEach(function(a){
@@ -95,7 +95,7 @@ function getNs(){
   });
   req.on('timeout', function(){
     console.log('timeout, waiting 10 seconds to try again');
-    setTimeout(req.send, 10000);
+    setTimeout(req.send.bind(req), 10000);
   });
   req.on('message', function(err, answer){
     answer.answer.forEach(function(a){
