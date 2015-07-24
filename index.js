@@ -7,6 +7,10 @@
 //   "got": "^3.3.1"
 //   "cloudflare-ddns": "^1.0.0"
 //
+// Commands:
+//   hubot hostname - Hubot will reply with its hostname.
+//   hubot ip - Hubot will reply with its ip address.
+//
 // Author:
 //   Greg Cochard <greg@gregcochard.com>
 
@@ -45,6 +49,7 @@ function setCf(name, addr){
 }
 
 var authNs = '';
+var currIp = '';
 
 function lookupDns(){
   var ip = '';
@@ -65,6 +70,7 @@ function lookupDns(){
     answer.answer.forEach(function(a){
       console.dir(a);
       ip = a.address;
+      currIp = ip;
       ttl = a.ttl * 1000;
     });
   });
@@ -105,3 +111,12 @@ function getNs(){
   req.send();
 }
 getNs();
+
+module.exports = function(robot){
+  robot.respond(/hostname/i, function(msg){
+    return msg.reply(process.env.HUBOT_DNS_NAME);
+  });
+  robot.respond(/ip/i, function(msg){
+    return msg.reply(currIp);
+  });
+};
