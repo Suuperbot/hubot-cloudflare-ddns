@@ -1,14 +1,14 @@
-# Description
-#   Hubot will update its DNS name when it changes (or shortly thereafter)
-#
-# Dependencies:
-#   "native-dns": "^0.7.0"
-#   "tldjs": "^1.5.3"
-#   "got": "^3.3.1"
-#   "cloudflare-ddns": "^1.0.0"
-#
-# Author:
-#   Greg Cochard <greg@gregcochard.com>
+// Description
+//   Hubot will update its DNS name when it changes (or shortly thereafter)
+//
+// Dependencies:
+//   "native-dns": "^0.7.0"
+//   "tldjs": "^1.5.3"
+//   "got": "^3.3.1"
+//   "cloudflare-ddns": "^1.0.0"
+//
+// Author:
+//   Greg Cochard <greg@gregcochard.com>
 
 var dns = require('native-dns');
 var tldjs = require('tldjs');
