@@ -19,7 +19,7 @@ var tldjs = require('tldjs');
 var CfDdns = require('cloudflare-ddns');
 var got = require('got');
 var cfDomain = tldjs.getDomain(process.env.HUBOT_DNS_NAME);
-var useCfApi = boolean(process.env.USE_CLOUDFLARE_API);
+var useCfApi = Boolean(process.env.USE_CLOUDFLARE_API);
 var dnsCfg = {
   cloudflare: {
     token: process.env.CLOUDFLARE_TOKEN,
