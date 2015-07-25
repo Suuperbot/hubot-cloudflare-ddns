@@ -19,6 +19,7 @@ var tldjs = require('tldjs');
 var CfDdns = require('cloudflare-ddns');
 var got = require('got');
 var cfDomain = tldjs.getDomain(process.env.HUBOT_DNS_NAME);
+var useCfApi = boolean(process.env.USE_CLOUDFLARE_API);
 var dnsCfg = {
   cloudflare: {
     token: process.env.CLOUDFLARE_TOKEN,
@@ -31,6 +32,14 @@ var dnsCfg = {
 dnsCfg.records[process.env.HUBOT_DNS_NAME] = 'A';
 
 var hubotDns = new CfDdns(dnsCfg);
+
+function getIp(cb){
+  got('http://canhazip.com/', {
+      headers: {
+        'user-agent': 'https://github.com/gcochard/hubot-cloudflare-ddns'
+      }
+  }, cb);
+}
 
 function setCf(name, addr){
   got('http://canhazip.com/', {
@@ -111,13 +120,25 @@ function getNs(){
   });
   req.send();
 }
-getNs();
+if(useCfApi){
+  // just do it in 5-minute intervals
+  setInterval(function(){
+    hubotDns.sync();
+  }, 5*60*1000);
+} else {
+  getNs();
+}
 
 module.exports = function(robot){
   robot.respond(/hostname/i, function(msg){
     return msg.reply(process.env.HUBOT_DNS_NAME);
   });
   robot.respond(/ip/i, function(msg){
-    return msg.reply(currIp);
+    getIp(function(err,ip){
+      if(err){
+        return msg.reply(err.message);
+      }
+      return msg.reply(ip);
+    });
   });
 };
